@@ -64,3 +64,4 @@ curl -X PATCH "http://localhost:8080/tasks/1" -H "Content-Type: application/json
 4. Get board with user detail (Call other rest call)
 5. Implement delete hook
 6. Clean up
+7. README fix
