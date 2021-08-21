@@ -10,6 +10,7 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Result{
+
   public String gender;
 
   public Map<String, String> name;
@@ -19,6 +20,7 @@ public class Result{
   public String phone;
 
   public String cell;
+
   public Map<String, String> login;
 
   public Map<String, String> picture;

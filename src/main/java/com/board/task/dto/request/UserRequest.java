@@ -12,7 +12,7 @@ import java.util.Map;
 public class UserRequest {
 
   @NotEmpty
-  private Date date;
+  private String time;
 
   @NotEmpty
   private Map<String, String> data;

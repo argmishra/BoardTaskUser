@@ -30,7 +30,7 @@ URL /webhooks/user-deleted using the POST HTTP method. Every time a user is dele
 will receive a call with the following payload.
 
 ## Solution
-1. Create Board - Implemented 
+1. Create Board - Implemented
 2. Get Board- Implemented
 3. Delete Board- Implemented
 4. Get Boards- Implemented
@@ -38,11 +38,11 @@ will receive a call with the following payload.
 6. Delete Task- Implemented
 7. Update Task- Implemented
 8. Replace Task- Implemented
-9. Delete Task by user
+9. Delete Tasks by user - Implemented
 10. Actuator end point - Implemented (http://localhost:8080/actuator)
 11. Swagger Integration - Implemented (http://localhost:8080/swagger-ui.html)
 12. Generic Exception Handling and Validations - Implemented (Refer to java classes)
-13. In Memory Database -  Implemented (Refer properties file) 
+13. In Memory Database - Implemented (Refer properties file) 
 14. Run Script - Implemented
 
 
@@ -57,11 +57,12 @@ curl -X GET "http://localhost:8080/boards" -H "Content-Type: application/json"
 
 curl -X DELETE "http://localhost:8080/boards/1" -H "Content-Type: application/json"
 
-curl -X DELETE "http://localhost:8080/tasks/1" -H "Content-Type: application/json"
-
 curl -X PUT "http://localhost:8080/tasks/1" -H "Content-Type: application/json" -d '{"name":"Bug", "description": "Track Bug"}'
 
 curl -X PATCH "http://localhost:8080/tasks/1" -H "Content-Type: application/json" -d '{"name":"Spike", "description": "Track Spike","user":"a5f62627-bbea-4233-9e44-4beb3e01024b"}'
 
-curl -X POST "http://localhost:8080/webhooks/user-deleted" -H "Content-Type: application/json" -d '{"data" :{"user":"a5f62627-bbea-4233-9e44-4beb3e01024b"}}'
+curl -X DELETE "http://localhost:8080/tasks/1" -H "Content-Type: application/json"
+
+curl -X POST "http://localhost:8080/webhooks/user-deleted" -H "Content-Type: application/json" -d '{"time":"2021-03-01T14:48:00.OOOZ", "data": { "user":"a5f62627-bbea-4233-9e44-4beb3e01024b" } }'
 ```
+
