@@ -1,5 +1,6 @@
 package com.board.task.service.impl;
 
+import com.board.task.convertor.TaskConverter;
 import com.board.task.dto.request.TaskRequest;
 import com.board.task.dto.response.TaskResponse;
 import com.board.task.enums.StatusEnum;
@@ -9,7 +10,10 @@ import com.board.task.repo.TaskRepository;
 import com.board.task.service.TaskService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 
 @Slf4j
 @Service
@@ -19,6 +23,8 @@ public class TaskServiceImpl implements TaskService {
   private TaskRepository taskRepository;
 
   @Override
+  @Transactional
+  @Modifying
   public void deleteTask(Long id){
     taskRepository.deleteById(id);
   }
@@ -31,7 +37,8 @@ public class TaskServiceImpl implements TaskService {
     task.setStatus(StatusEnum.Created);
 
     task = taskRepository.save(task);
-    return TaskResponse.builder().description(task.getDescription()).name(task.getName()).status(task.getStatus()).id(task.getId()).build();  }
+    return TaskConverter.toTaskResponse(task);
+  }
 
   @Override
   public TaskResponse updateTask(TaskRequest request, Long id){
@@ -40,14 +47,17 @@ public class TaskServiceImpl implements TaskService {
     task.setDescription(updateField(request.getDescription(), task.getDescription()));
 
     task = taskRepository.save(task);
-    return TaskResponse.builder().description(task.getDescription()).name(task.getName()).status(task.getStatus()).id(task.getId()).build();
+    return TaskConverter.toTaskResponse(task);
   }
-
 
   public Task getTask(Long id){
     return taskRepository.findById(id).orElseThrow(() -> {
       throw new TaskNotFoundException("Task not found.");
     });
+  }
+
+  public void deleteTaskByUser(String user){
+    taskRepository.deleteAllByUser(user);
   }
 
   private String updateField(String newValue, String oldValue){

@@ -15,7 +15,7 @@ public interface BoardService {
 
   TaskResponse createTasks(TaskRequest request, Long id);
 
-  Board getBoard(Long id);
+  BoardResponse getBoard(Long id);
 
   List<Board> getAllBoards();
 

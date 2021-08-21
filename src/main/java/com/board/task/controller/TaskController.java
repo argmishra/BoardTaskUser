@@ -40,13 +40,10 @@ public class TaskController {
     return new ResponseEntity(taskService.replaceTask(request, id), HttpStatus.OK);
   }
 
-
   @PatchMapping("{id}")
   public ResponseEntity<TaskResponse> updateTask(@RequestBody @Valid  TaskRequest request, @PathVariable Long id){
     log.info("Replace task by {}", id);
     return new ResponseEntity(taskService.updateTask(request, id), HttpStatus.OK);
   }
-
-
 
 }

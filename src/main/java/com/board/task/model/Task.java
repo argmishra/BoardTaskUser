@@ -47,7 +47,5 @@ public class Task {
   private Board board;
 
   @Column (name = "user")
-  private String user ;
-
-
+  private String user;
 }
