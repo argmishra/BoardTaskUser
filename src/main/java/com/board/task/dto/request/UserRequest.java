@@ -9,7 +9,7 @@ import java.util.Map;
 
 @Setter
 @Getter
-public class DeleteRequest {
+public class UserRequest {
 
   @NotEmpty
   private Date date;

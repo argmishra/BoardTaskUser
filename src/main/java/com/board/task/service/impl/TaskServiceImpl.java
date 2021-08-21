@@ -2,6 +2,7 @@ package com.board.task.service.impl;
 
 import com.board.task.convertor.TaskConverter;
 import com.board.task.dto.request.TaskRequest;
+import com.board.task.dto.request.UserRequest;
 import com.board.task.dto.response.TaskResponse;
 import com.board.task.enums.StatusEnum;
 import com.board.task.exception.TaskNotFoundException;
@@ -10,10 +11,7 @@ import com.board.task.repo.TaskRepository;
 import com.board.task.service.TaskService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
 
 @Slf4j
 @Service
@@ -23,8 +21,6 @@ public class TaskServiceImpl implements TaskService {
   private TaskRepository taskRepository;
 
   @Override
-  @Transactional
-  @Modifying
   public void deleteTask(Long id){
     taskRepository.deleteById(id);
   }
@@ -56,8 +52,9 @@ public class TaskServiceImpl implements TaskService {
     });
   }
 
-  public void deleteTaskByUser(String user){
-    taskRepository.deleteAllByUser(user);
+  @Override
+  public void deleteTasksByUser(UserRequest request){
+    taskRepository.deleteAllByUser(request.getData().get("user"));
   }
 
   private String updateField(String newValue, String oldValue){

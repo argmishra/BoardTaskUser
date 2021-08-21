@@ -62,4 +62,6 @@ curl -X DELETE "http://localhost:8080/tasks/1" -H "Content-Type: application/jso
 curl -X PUT "http://localhost:8080/tasks/1" -H "Content-Type: application/json" -d '{"name":"Bug", "description": "Track Bug"}'
 
 curl -X PATCH "http://localhost:8080/tasks/1" -H "Content-Type: application/json" -d '{"name":"Spike", "description": "Track Spike","user":"a5f62627-bbea-4233-9e44-4beb3e01024b"}'
+
+curl -X POST "http://localhost:8080/webhooks/user-deleted" -H "Content-Type: application/json" -d '{"data" :{"user":"a5f62627-bbea-4233-9e44-4beb3e01024b"}}'
 ```

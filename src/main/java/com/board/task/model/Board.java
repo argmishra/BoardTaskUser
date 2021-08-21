@@ -38,7 +38,6 @@ public class Board {
   @Column (name = "description")
   private String description ;
 
-  @OneToMany(mappedBy = "board", fetch = FetchType.LAZY,
-      cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "board", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   private List<Task> tasks;
 }
